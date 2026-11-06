@@ -1,0 +1,92 @@
+==========================================================
+POST-QUESTIONNAIRE  -  "What did you learn?"
+Anonymous  |  12 minutes  |  not graded
+==========================================================
+
+BEFORE YOU START (put this in the form description)
+  This is not a test. Do not write your name. Use the SAME anonymous
+  code you used before the session. Answer on your own. If you are
+  not sure, choose "Not sure". You may skip any question.
+
+----------------------------------------------------------
+SECTION 1 - ABOUT YOU
+----------------------------------------------------------
+
+Q. Your anonymous code                      [Short answer]
+   Help text: The same code you used on the pre-questionnaire.
+   Not your name.
+
+Q. Year group                               [Multiple choice]
+   Y7 / Y8 / Y9 / Y10 / Y11 / Y12 / Y13
+
+----------------------------------------------------------
+SECTION 2 - KNOWLEDGE CHECK (10 questions)
+Section description: These are the same questions you answered before
+the session, so that we can compare what changed.
+
+IMPORTANT: questions 1-10 are WORD FOR WORD and in the SAME ORDER as
+the pre-questionnaire. Copy them from PRE-questionnaire.txt without
+changing anything. If you change the wording or the order, you cannot
+compare the two sets of answers.
+----------------------------------------------------------
+
+[QUESTIONS 1-10 - identical to the pre-questionnaire]
+
+----------------------------------------------------------
+SECTION 3 - NEW SITUATIONS (3 questions)
+Section description: These questions were not in the first
+questionnaire. They test whether you can use the ideas in a new
+situation.
+----------------------------------------------------------
+
+11. Your allowance is HK$1,200 a month and you set yourself a 20%
+    entertainment limit. What is the maximum you may spend on
+    entertainment this month?                           [Short answer]
+    Help text: Answer format: HK$ ______
+
+12. A friend says: "I have already put HK$800 into this game, so I
+    have to keep playing until it is worth it."
+    Name the thinking trap in one line.                 [Short answer]
+
+13. A shop shows "WAS HK$1,299 - NOW HK$699". In one sentence,
+    explain how this might change what a buyer decides. [Paragraph]
+
+----------------------------------------------------------
+SECTION 4 - HOW YOU THINK ABOUT MONEY
+Description: Same statements as before.
+----------------------------------------------------------
+
+[IDENTICAL to pre-questionnaire Section 4 - the 8 statements]
+
+----------------------------------------------------------
+SECTION 5 - REFLECTION
+----------------------------------------------------------
+
+Q. The most useful thing I learned in this session was:  [Paragraph]
+
+Q. One thing I will do differently with my money is:     [Paragraph]
+
+Q. Something I am still unsure about:                    [Paragraph]
+
+Q. How useful was this session to you?             [Linear scale 1-5]
+   Labels: 1 = not useful, 5 = very useful
+
+Q. Would you recommend this session to a different class?
+                                                          [Multiple choice]
+   Yes / No / Not sure
+
+CLOSING MESSAGE: Thank you. Please hand this in.
+
+
+==========================================================
+FORM SETTINGS - check these before you send it
+==========================================================
+
+  Collect email addresses ............ OFF   (it is anonymous)
+  Limit to 1 response ................ OFF   (that forces sign-in)
+  Shuffle question order ............. OFF   (post must match pre)
+  Make all questions required ........ OFF   (voluntary participation)
+  Show link to respond again ......... OFF
+
+  Then: Responses tab -> link to a Google Sheet, one tab per form.
+  You match the two tabs on the anonymous code.

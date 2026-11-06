@@ -1,0 +1,97 @@
+VIDEO + POSTER SURVEY  (give this straight after they watch)
+============================================================
+YCIS  |  IGCSE Global Perspectives  |  anonymous  |  2 minutes
+Topic: what did the video and poster actually do?
+
+This is NOT the pre/post survey. That one measures the students.
+This one measures your video and poster.
+
+
+TITLE:  What Did You Think of the Video and Poster?
+
+INTRO
+  Anonymous and quick - about 2 minutes. There are no right or wrong
+  answers. We want to know if our video and poster worked.
+  Please do not write your name.
+
+
+----------------------------------------------------------
+THE 8 QUESTIONS
+----------------------------------------------------------
+
+Q1. Did you watch the video?                       [Multiple choice]
+
+    - Yes, all of it
+    - Yes, part of it
+    - No
+
+Q2. How clear was the video's message?
+                                        [Linear scale 1 - 10]
+    1 = very unclear        10 = very clear
+
+Q3. How clear was the poster's message?
+                                        [Linear scale 1 - 10]
+    1 = very unclear        10 = very clear
+
+Q4. Which one made the message easier to understand?
+                                                   [Multiple choice]
+
+    - The video
+    - The poster
+    - Both about the same
+    - Neither
+
+Q5. How much did it make you think about your own game spending?
+                                        [Linear scale 1 - 10]
+    1 = not at all          10 = a lot
+
+Q6. After seeing it, how likely are you to spend less on games?
+                                        [Linear scale 1 - 10]
+    1 = not likely          10 = very likely
+
+Q7. What is one thing you remember from the video or poster?
+    (one line, no right answer)                       [Short answer]
+
+Q8. Overall, how useful were the video and poster together?
+                                        [Linear scale 1 - 10]
+    1 = not useful          10 = very useful
+
+
+----------------------------------------------------------
+HOW TO READ THE RESULTS
+----------------------------------------------------------
+
+  Q2, Q3, Q8   ->  compare the averages. If Q2 is well above Q3, the
+                   video did the work and the poster needs changing.
+  Q4           ->  the percentage split tells you which format
+                   students actually read.
+  Q5, Q6       ->  these are your "impact" numbers. Q6 is the one to
+                   quote in your report.
+  Q7           ->  group the answers into 2-3 themes and count them.
+
+  Example sentence:
+  "Students rated the video's clarity at 8.1 out of 10 and the poster
+  at 6.3. After seeing both, students rated their likelihood of
+  spending less on games at 6.8 out of 10."
+
+
+----------------------------------------------------------
+HOW IT FITS WITH THE OTHER SURVEY
+----------------------------------------------------------
+
+  1. Pre survey        ->  before anything
+  2. Show video + poster
+  3. Post survey       ->  the same 8 questions again (measures change)
+  4. This survey       ->  right after, measures the video and poster
+
+  If you only have time for one, run the pre/post pair. This survey is
+  the extra one that tells you WHY something did or did not change.
+
+----------------------------------------------------------
+FORM SETTINGS
+----------------------------------------------------------
+
+  Collect email addresses ...... OFF
+  Limit to 1 response .......... OFF
+  Shuffle question order ....... OFF
+  Make all questions required .. OFF

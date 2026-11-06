@@ -1,0 +1,26 @@
+{
+  "mode": "all",
+  "cards": [
+    {
+      "id": "sv3pt5-199",
+      "priceHKD": 2400,
+      "addedAt": "2026-10-29T03:18:36.031Z"
+    },
+    {
+      "id": "swsh7-215",
+      "priceHKD": 16800,
+      "addedAt": "2026-10-29T03:18:36.031Z"
+    },
+    {
+      "id": "base1-4",
+      "priceHKD": null,
+      "addedAt": "2026-10-29T03:18:36.031Z"
+    },
+    {
+      "id": "basep-1",
+      "priceHKD": 999,
+      "addedAt": "2026-10-29T03:23:15.744Z"
+    }
+  ],
+  "updatedAt": "2026-10-29T03:25:16.884Z"
+}

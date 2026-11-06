@@ -1,0 +1,15 @@
+{
+  "name": "holodex",
+  "version": "1.6.0",
+  "private": true,
+  "description": "Local-first Pokémon card price checker: USD/HKD/EUR market prices, SNKRDUNK JPY data, Japanese set-code explorer (TCGdex), Japanese→Chinese card translation, and an admin panel for curated catalogs + custom prices.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "static": "python3 -m http.server 4310"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,98 @@
+SURVEY - PRE AND POST (same 8 questions both times)
+====================================================
+YCIS  |  IGCSE Global Perspectives  |  anonymous  |  2 minutes
+Topic: spending on games / online games
+
+Use the SAME questions before and after, so the answers can be compared.
+Only the title and the intro line change.
+
+PRE  title: How Do You Spend on Games?
+POST title: How Do You Spend on Games? (After)
+
+
+INTRO - PRE
+  Anonymous and quick - about 2 minutes. There are no right or wrong
+  answers. Answer honestly, and do not write your name.
+
+INTRO - POST
+  Same questions as before, about 2 minutes. There are no right or
+  wrong answers. Answer honestly, and do not write your name.
+
+
+----------------------------------------------------------
+THE 8 QUESTIONS
+----------------------------------------------------------
+
+Q1. How much money do you get in a normal month?
+    (allowance, red packets, part-time work)      [Multiple choice]
+
+    - Under HK$200
+    - HK$200 - 499
+    - HK$500 - 999
+    - HK$1,000 - 1,999
+    - HK$2,000 or more
+
+Q2. About what percentage of that goes on games?  [Multiple choice]
+
+    - 0 - 10%
+    - 11 - 25%
+    - 26 - 50%
+    - 51 - 75%
+    - 76 - 100%
+
+Q3. What do you spend the most on in games?
+                                                  [Multiple choice]
+
+    - Skins and cosmetic items
+    - Gacha pulls and loot boxes
+    - New games
+    - Battle passes and subscriptions
+    - Something else
+
+Q4. How often do you spend money on games?
+                                                  [Multiple choice]
+
+    - Never
+    - 1 - 2 times a month
+    - 3 - 5 times a month
+    - 6 or more times a month
+
+Q5. How much do you enjoy spending on games?
+                                        [Linear scale 1 - 10]
+    1 = not at all          10 = a lot
+
+Q6. How much do you plan your game spending before you buy?
+                                        [Linear scale 1 - 10]
+    1 = never plan          10 = always plan
+
+Q7. How often do you spend more on games than you meant to?
+                                        [Linear scale 1 - 10]
+    1 = never               10 = very often
+
+Q8. After buying something in a game, how do you usually feel?
+                                        [Linear scale 1 - 10]
+    1 = wish I had not      10 = glad I did
+
+
+----------------------------------------------------------
+HOW TO READ THE RESULTS
+----------------------------------------------------------
+
+  Q1 to Q4  ->  report the percentage who picked each option.
+  Q5 to Q8  ->  work out the average (mean) score.
+  Before vs after  ->  compare the averages for Q5 to Q8. That is your
+                       "did anything change" number.
+
+  Example sentence:
+  "The average for 'how often do you spend more on games than you
+  meant to' fell from 6.4 before the session to 5.1 afterwards."
+
+
+----------------------------------------------------------
+FORM SETTINGS
+----------------------------------------------------------
+
+  Collect email addresses ...... OFF   (it is anonymous)
+  Limit to 1 response .......... OFF   (that forces sign-in)
+  Shuffle question order ....... OFF   (pre and post must match)
+  Make all questions required .. OFF   (voluntary)

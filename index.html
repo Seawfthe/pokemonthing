@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>HoloDex — Japanese Pokémon Card Prices, Search &amp; Binder Value</title>
+  <meta name="description" content="Search the Japanese Pokémon card index: Japanese names, TCGdex scans, set codes, and live SNKRDUNK asking prices in JPY — with USD / HKD / EUR conversion and a binder total." />
+  <meta name="theme-color" content="#07080e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237dd3fc'/%3E%3Cstop offset='.5' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230b0d16'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='url(%23g)' stroke-width='2.2'/%3E%3Cpath d='M7 16h18' stroke='url(%23g)' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%230b0d16' stroke='url(%23g)' stroke-width='2.2'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <!-- ============================ header ============================ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" id="brand-link" aria-label="HoloDex home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+            <defs>
+              <linearGradient id="holoGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7dd3fc" />
+                <stop offset="0.5" stop-color="#a78bfa" />
+                <stop offset="1" stop-color="#f472b6" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#holoGrad)" stroke-width="2.4" />
+            <path d="M3 16h26" stroke="url(#holoGrad)" stroke-width="2.4" />
+            <circle cx="16" cy="16" r="4.6" fill="#0b0d16" stroke="url(#holoGrad)" stroke-width="2.4" />
+          </svg>
+        </span>
+        <span class="brand-name">Holo<span class="grad-text">Dex</span></span>
+        <span class="brand-badge" id="brand-badge">JP CARDS · LIVE PRICES</span>
+      </a>
+
+      <div class="header-actions">
+        <div class="segmented segmented-lang" id="lang-toggle" role="group" aria-label="Card language">
+          <button type="button" data-lang="ja" class="is-active" aria-pressed="true">日本語</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <div class="segmented" id="currency-toggle" role="group" aria-label="Display currency">
+          <button type="button" data-currency="USD" aria-pressed="false">$&nbsp;USD</button>
+          <button type="button" data-currency="HKD" aria-pressed="false">HK$</button>
+          <button type="button" data-currency="EUR" aria-pressed="false">€&nbsp;EUR</button>
+          <button type="button" data-currency="JPY" class="is-active" aria-pressed="true">¥&nbsp;JPY</button>
+        </div>
+        <button type="button" class="btn btn-binder" id="btn-binder" aria-label="Open my binder">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21V5.5Z" />
+            <path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20" />
+            <path d="M9 7.5h6" />
+          </svg>
+          <span class="btn-binder-label">Binder</span>
+          <span class="binder-badge" id="binder-count" hidden>0</span>
+        </button>
+        <button type="button" class="icon-btn" id="btn-settings" aria-label="Settings" title="Settings">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.1-1.55 1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1.1 1.7 1.7 0 0 0-.34-1.88l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1Z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ hero ============================ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow" id="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> Japanese card market <span class="eyebrow-extra">· TCGdex scans &amp; SNKRDUNK JPY</span></p>
+        <h1 id="hero-title">Japanese cards.<br /><span class="grad-text hero-grad">Every market.</span></h1>
+        <p class="hero-sub" id="hero-sub">Search the Japanese card index by its Japanese name — TCGdex scans, set codes, and live SNKRDUNK asking prices in JPY, converted to your currency.</p>
+
+        <form class="searchbar" id="search-form" role="search" autocomplete="off">
+          <span class="searchbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.4-3.4" />
+            </svg>
+          </span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search a Japanese card — 「リザードン」… or a set code like “M2a”"
+            aria-label="Search Japanese Pokémon cards"
+            autocomplete="off"
+            spellcheck="false"
+            enterkeyhint="search"
+          />
+          <kbd class="searchbar-kbd" aria-hidden="true">/</kbd>
+          <button class="btn btn-primary searchbar-btn" id="btn-search-submit" type="submit">Search</button>
+        </form>
+
+        <div class="quick-chips" id="quick-chips" aria-label="Suggested searches">
+          <span class="quick-label">Try</span>
+        </div>
+
+        <p class="hero-note" id="hero-note">Japanese prints from TCGdex · SNKRDUNK asking prices in JPY</p>
+      </div>
+    </section>
+
+    <!-- ============================ home ============================ -->
+    <div id="home-view">
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">The chase</p>
+            <h2 id="featured-title">Most valuable Japanese cards</h2>
+            <p class="section-sub" id="featured-sub">Ranked by live SNKRDUNK asking price in JPY.</p>
+          </div>
+          <span class="section-meta" id="featured-meta"></span>
+        </div>
+        <div class="card-grid grid-featured" id="featured-grid" aria-busy="true"></div>
+      </section>
+
+      <section class="section" id="sets-section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Jump in</p>
+            <h2 id="sets-title">Browse Japanese sets</h2>
+            <p class="section-sub" id="sets-sub">Every Japanese set TCGdex knows — newest first. Tap one to see the whole print run.</p>
+          </div>
+          <span class="section-meta">Tap a set to open it</span>
+        </div>
+        <div class="set-strip" id="set-strip" aria-busy="true"></div>
+      </section>
+
+      <section class="section feature-row">
+        <article class="feature-card" id="feature-1">
+          <div class="feature-icon" aria-hidden="true">◎</div>
+          <h3>Japanese names, Japanese scans</h3>
+          <p>Card names, attacks and flavour text come straight from TCGdex in Japanese — with the Japanese print scan for each card, not the English one.</p>
+        </article>
+        <article class="feature-card" id="feature-2">
+          <div class="feature-icon" aria-hidden="true">◈</div>
+          <h3>SNKRDUNK, in JPY</h3>
+          <p>Live asking prices from Japan’s biggest card marketplace — shown in yen, with USD / HKD / EUR conversion at the top of the page.</p>
+        </article>
+        <article class="feature-card" id="feature-3">
+          <div class="feature-icon" aria-hidden="true">❒</div>
+          <h3>Binder that adds up</h3>
+          <p>Drop Japanese cards into your binder, adjust quantities, and watch the total move with the market. Exports to JSON whenever you want it.</p>
+        </article>
+      </section>
+    </div>
+
+    <!-- ============================ results ============================ -->
+    <section class="section results" id="results-view" hidden>
+      <div class="results-head">
+        <div class="results-title">
+          <button class="link-back" id="btn-back-home" type="button">← All cards</button>
+          <h2 id="results-title">Results</h2>
+          <p id="results-sub"></p>
+        </div>
+        <div class="results-actions">
+          <label class="select-wrap">
+            <span class="select-label">Sort</span>
+            <select id="sort-select" aria-label="Sort results">
+              <option value="value-desc">Highest value</option>
+              <option value="value-asc">Lowest value</option>
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="filters" id="filters">
+        <label class="select-wrap">
+          <span class="select-label">Set</span>
+          <select id="set-select" aria-label="Filter by set"><option value="">All sets</option></select>
+        </label>
+        <label class="select-wrap filter-en">
+          <span class="select-label">Rarity</span>
+          <select id="rarity-select" aria-label="Filter by rarity">
+            <option value="">Any rarity</option>
+            <option>Common</option>
+            <option>Uncommon</option>
+            <option>Rare</option>
+            <option>Rare Holo</option>
+            <option>Rare Holo EX</option>
+            <option>Rare Holo GX</option>
+            <option>Rare Holo V</option>
+            <option>Rare Holo VMAX</option>
+            <option>Rare Holo VSTAR</option>
+            <option>Rare Holo LV.X</option>
+            <option>Rare Ultra</option>
+            <option>Rare Rainbow</option>
+            <option>Rare Secret</option>
+            <option>Rare Shiny</option>
+            <option>Rare Shiny GX</option>
+            <option>Hyper Rare</option>
+            <option>Illustration Rare</option>
+            <option>Special Illustration Rare</option>
+            <option>Ultra Rare</option>
+            <option>Double Rare</option>
+            <option>ACE SPEC Rare</option>
+            <option>Radiant Rare</option>
+            <option>Amazing Rare</option>
+            <option>Rare Prism Star</option>
+          </select>
+        </label>
+        <label class="select-wrap filter-en">
+          <span class="select-label">Type</span>
+          <select id="type-select" aria-label="Filter by energy type">
+            <option value="">Any type</option>
+            <option>Grass</option><option>Fire</option><option>Water</option>
+            <option>Lightning</option><option>Psychic</option><option>Fighting</option>
+            <option>Darkness</option><option>Metal</option><option>Dragon</option>
+            <option>Colorless</option><option>Fairy</option>
+          </select>
+        </label>
+        <div class="filter-chips filter-en" role="group" aria-label="Card category">
+          <button type="button" class="chip chip-filter is-active" data-supertype="">All cards</button>
+          <button type="button" class="chip chip-filter" data-supertype="Pokémon">Pokémon</button>
+          <button type="button" class="chip chip-filter" data-supertype="Trainer">Trainer</button>
+          <button type="button" class="chip chip-filter" data-supertype="Energy">Energy</button>
+        </div>
+        <button type="button" class="btn btn-ghost btn-clear" id="btn-clear-filters">Clear filters</button>
+      </div>
+
+      <div class="result-bar">
+        <span id="result-status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div class="card-grid" id="results-grid"></div>
+
+      <div class="state-card state-empty" id="empty-state" hidden>
+        <div class="state-icon" aria-hidden="true">◎</div>
+        <h3>No cards matched that search</h3>
+        <p id="empty-message">Try a shorter Japanese name (「リザードン」), the card number (e.g. <code>201/165</code>), or open a set code like <code>M2a</code>.</p>
+        <div class="state-actions">
+          <button type="button" class="btn btn-soft" id="btn-empty-clear">Clear filters</button>
+          <button type="button" class="btn btn-ghost" data-q="リザードン">Try 「リザードン」</button>
+        </div>
+      </div>
+
+      <div class="state-card state-error" id="error-state" hidden>
+        <div class="state-icon" aria-hidden="true">⚡</div>
+        <h3>That request hit a snag</h3>
+        <p id="error-message">The price API is being moody. It usually recovers in a few seconds.</p>
+        <div class="state-actions">
+          <button type="button" class="btn btn-primary" id="btn-retry">Try again</button>
+          <button type="button" class="btn btn-ghost" id="btn-error-settings">API settings</button>
+        </div>
+      </div>
+
+      <div class="load-more" id="load-more-wrap" hidden>
+        <button type="button" class="btn btn-soft btn-load" id="btn-load-more">Load more cards</button>
+        <p id="load-more-note"></p>
+      </div>
+    </section>
+
+    <!-- ============================ japanese series ============================ -->
+    <section class="section jp-view" id="jp-view" hidden>
+      <div class="results-head">
+        <div class="results-title">
+          <button class="link-back" id="btn-jp-back" type="button">← All cards</button>
+          <p class="section-kicker" id="jp-kicker">Japanese series</p>
+          <h2 id="jp-title">—</h2>
+          <p id="jp-sub"></p>
+        </div>
+        <div class="results-actions">
+          <a class="btn btn-soft" id="jp-snkr-link" href="https://snkrdunk.com" target="_blank" rel="noopener noreferrer">SNKRDUNK ↗</a>
+        </div>
+      </div>
+
+      <div class="jp-banner" id="jp-banner">
+        <span class="tag tag-jp">JP</span>
+        <span id="jp-meta">Loading Japanese set data…</span>
+      </div>
+
+      <div class="jp-controls">
+        <label class="select-wrap">
+          <span class="select-label">Sort</span>
+          <select id="jp-sort" aria-label="Sort Japanese cards">
+            <option value="number">Card number</option>
+            <option value="price-desc">Highest price</option>
+            <option value="price-asc">Lowest price</option>
+            <option value="name">Name</option>
+          </select>
+        </label>
+        <button type="button" class="chip chip-filter" id="jp-priced-toggle">With prices only</button>
+        <span class="jp-status" id="jp-status"></span>
+      </div>
+
+      <div class="card-grid jp-grid" id="jp-grid"></div>
+
+      <div class="state-card" id="jp-empty" hidden>
+        <div class="state-icon" aria-hidden="true">◎</div>
+        <h3>No cards to show</h3>
+        <p>No cards in this series matched the current filter.</p>
+        <div class="state-actions"><button type="button" class="btn btn-soft" id="btn-jp-reset-filter">Reset filter</button></div>
+      </div>
+
+      <div class="state-card state-error" id="jp-error" hidden>
+        <div class="state-icon" aria-hidden="true">⚡</div>
+        <h3>Couldn't load that Japanese series</h3>
+        <p id="jp-error-message">The set code may not exist, or the Japanese card API is unreachable.</p>
+        <div class="state-actions"><button type="button" class="btn btn-primary" id="btn-jp-retry">Try again</button></div>
+      </div>
+
+      <div class="load-more" id="jp-load-more-wrap" hidden>
+        <button type="button" class="btn btn-soft btn-load" id="btn-jp-load-more">Load more cards</button>
+        <p id="jp-load-note"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ footer ============================ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">Holo<span class="grad-text">Dex</span></span>
+        <p>A price-check for people who actually collect Japanese cards. Built locally, no account, no tracking, no nonsense.</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Data</h4>
+          <ul>
+            <li>Card data · <a href="https://pokemontcg.io" target="_blank" rel="noopener noreferrer">Pokémon TCG API</a></li>
+            <li>USD · <a href="https://www.tcgplayer.com" target="_blank" rel="noopener noreferrer">TCGplayer</a></li>
+            <li>EUR · <a href="https://www.cardmarket.com" target="_blank" rel="noopener noreferrer">Cardmarket</a></li>
+            <li>JPY · <a href="https://snkrdunk.com" target="_blank" rel="noopener noreferrer">SNKRDUNK</a></li>
+            <li>JP sets · <a href="https://tcgdex.dev" target="_blank" rel="noopener noreferrer">TCGdex</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Notes</h4>
+          <ul>
+            <li>Prices are marketplace estimates, not offers.</li>
+            <li>Markets update at different rates.</li>
+            <li>Not affiliated with Nintendo, Creatures, GAME FREAK or TPCi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>HoloDex · a local price tool</span>
+      <span class="footer-bottom-right">
+        <a id="footer-admin" class="footer-admin-link" href="/admin" hidden>Admin</a>
+        <span id="footer-mode">Direct API mode</span>
+      </span>
+    </div>
+  </footer>
+
+  <!-- ============================ card modal ============================ -->
+  <div class="overlay-root" id="card-modal" hidden>
+    <div class="overlay-backdrop" data-close="modal"></div>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+      <button type="button" class="icon-btn modal-close" data-close="modal" aria-label="Close card details">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ============================ binder drawer ============================ -->
+  <div class="overlay-root drawer-root" id="binder-drawer" hidden>
+    <div class="overlay-backdrop" data-close="binder"></div>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="binder-title">
+      <header class="drawer-head">
+        <div>
+          <p class="section-kicker">Collection</p>
+          <h2 id="binder-title">My binder</h2>
+        </div>
+        <button type="button" class="icon-btn" data-close="binder" aria-label="Close binder">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+      <div class="binder-total">
+        <span class="binder-total-label">Total value</span>
+        <strong id="binder-total-value">$0.00</strong>
+        <span class="binder-total-note" id="binder-total-note">No cards yet</span>
+      </div>
+      <div class="binder-list" id="binder-list"></div>
+      <footer class="drawer-actions">
+        <button type="button" class="btn btn-soft" id="btn-binder-refresh">Refresh prices</button>
+        <button type="button" class="btn btn-soft" id="btn-binder-copy">Copy summary</button>
+        <button type="button" class="btn btn-soft" id="btn-binder-export">Export JSON</button>
+        <button type="button" class="btn btn-danger" id="btn-binder-clear">Clear binder</button>
+      </footer>
+    </aside>
+  </div>
+
+  <!-- ============================ settings ============================ -->
+  <div class="overlay-root" id="settings-modal" hidden>
+    <div class="overlay-backdrop" data-close="settings"></div>
+    <div class="modal modal-small" role="dialog" aria-modal="true" aria-labelledby="settings-title" tabindex="-1">
+      <button type="button" class="icon-btn modal-close" data-close="settings" aria-label="Close settings">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+      <div class="settings-body">
+        <p class="section-kicker">Config</p>
+        <h2 id="settings-title">API settings</h2>
+        <p class="settings-copy">
+          HoloDex runs fine without a key — the public Pokémon TCG API allows about 1,000 requests a day.
+          If you search a lot, grab a free key at
+          <a href="https://dev.pokemontcg.io" target="_blank" rel="noopener noreferrer">dev.pokemontcg.io</a>
+          and paste it below. It is stored only in this browser.
+        </p>
+        <label class="field">
+          <span class="field-label">Pokémon TCG API key</span>
+          <input id="apikey-input" type="password" placeholder="Paste your key (optional)" autocomplete="off" spellcheck="false" />
+        </label>
+        <div class="settings-row">
+          <span class="settings-mode" id="settings-mode">Mode: direct API</span>
+          <button type="button" class="btn btn-soft" id="btn-save-key">Save key</button>
+          <button type="button" class="btn btn-ghost" id="btn-clear-key">Remove key</button>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="settings-row settings-row-between">
+          <div>
+            <h3>日本語 → 中文</h3>
+            <p class="settings-copy small">
+              The <strong>中文</strong> button in a Japanese card's detail view translates its Japanese name,
+              attacks, abilities and flavour text into Chinese. English card details are left untouched.
+              The local server does the work and caches the result on disk.
+            </p>
+          </div>
+          <label class="select-wrap">
+            <span class="select-label">Variant</span>
+            <select id="zh-lang" aria-label="Chinese translation variant">
+              <option value="zh-CN">简体中文</option>
+              <option value="zh-TW">繁體中文</option>
+            </select>
+          </label>
+        </div>
+        <div class="settings-divider"></div>
+        <div class="settings-row settings-row-between">
+          <div>
+            <h3>Cached data</h3>
+            <p class="settings-copy small">Search results and card prices are cached locally for a few minutes to keep the API happy.</p>
+          </div>
+          <button type="button" class="btn btn-ghost" id="btn-clear-cache">Clear cache</button>
+        </div>
+        <p class="settings-foot">SNKRDUNK JP prices are fetched and matched by the local server, then cached for an hour.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toasts" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

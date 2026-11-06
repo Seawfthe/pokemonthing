@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Admin — HoloDex</title>
+  <meta name="description" content="Curate the HoloDex catalog and set custom card prices." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#07080e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237dd3fc'/%3E%3Cstop offset='.5' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%23f472b6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%230b0d16'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='url(%23g)' stroke-width='2.2'/%3E%3Cpath d='M7 16h18' stroke='url(%23g)' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%230b0d16' stroke='url(%23g)' stroke-width='2.2'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="HoloDex home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+            <defs>
+              <linearGradient id="holoGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7dd3fc" />
+                <stop offset="0.5" stop-color="#a78bfa" />
+                <stop offset="1" stop-color="#f472b6" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#holoGrad)" stroke-width="2.4" />
+            <path d="M3 16h26" stroke="url(#holoGrad)" stroke-width="2.4" />
+            <circle cx="16" cy="16" r="4.6" fill="#0b0d16" stroke="url(#holoGrad)" stroke-width="2.4" />
+          </svg>
+        </span>
+        <span class="brand-name">Holo<span class="grad-text">Dex</span></span>
+        <span class="admin-tag">ADMIN</span>
+      </a>
+      <div class="header-actions">
+        <a class="admin-back" href="/">← Back to site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <!-- login -->
+    <section class="admin-login" id="login-view">
+      <p class="section-kicker">Restricted area</p>
+      <h1>Admin sign in</h1>
+      <p>Control which cards appear on HoloDex and override any card's price. Credentials are verified by the local server — the password never touches the browser.</p>
+      <form id="login-form" autocomplete="on">
+        <label class="field">
+          <span class="field-label">Username</span>
+          <input id="login-user" name="username" type="text" autocomplete="username" spellcheck="false" required />
+        </label>
+        <label class="field">
+          <span class="field-label">Password</span>
+          <input id="login-pass" name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <div class="admin-error" id="login-error" hidden></div>
+        <button class="btn btn-primary" type="submit" id="login-submit">Sign in</button>
+      </form>
+      <p class="admin-login-foot">Default credentials live in <code>server.mjs</code> (or <code>ADMIN_USER</code> / <code>ADMIN_PASS</code>). Sessions expire after a day; signing out clears the token.</p>
+      <div class="admin-server-off" id="server-off" hidden>
+        Admin mode needs the local server. Run <code>node server.mjs</code> and open <code>http://localhost:4310/admin</code>.
+      </div>
+    </section>
+
+    <!-- panel -->
+    <section id="admin-view" hidden>
+      <div class="admin-topbar">
+        <div>
+          <p class="section-kicker">Catalog control</p>
+          <h1>Which cards are shown?</h1>
+          <p>Switch between the full index and a handpicked catalog, and set your own price on any card. Saved to <code>data/site-config.json</code> and picked up by the live site.</p>
+        </div>
+        <div class="admin-topbar-actions">
+          <div class="admin-mode" id="mode-toggle" role="group" aria-label="Catalog mode">
+            <button type="button" data-mode="all">Full index</button>
+            <button type="button" data-mode="curated">Curated only</button>
+          </div>
+          <span class="admin-dirty is-clean" id="dirty-status">No changes</span>
+          <button class="btn btn-primary" id="btn-save" type="button">Save changes</button>
+          <button class="btn btn-ghost" id="btn-preview" type="button">View site ↗</button>
+          <button class="btn btn-ghost" id="btn-logout" type="button">Sign out</button>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <section class="admin-panel">
+          <div class="admin-panel-head">
+            <h2>Find a card</h2>
+            <span id="search-status">Whole index</span>
+          </div>
+          <div class="admin-panel-body">
+            <form class="searchbar admin-searchbar" id="admin-search-form" role="search" autocomplete="off">
+              <span class="searchbar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.4-3.4" />
+                </svg>
+              </span>
+              <input id="admin-search-input" type="search" placeholder="Search every card — name, set, number…" aria-label="Search cards to add" autocomplete="off" spellcheck="false" />
+            </form>
+            <p class="admin-hint">Search the Pokémon TCG API, then add the cards you want on the site. Search works even in curated mode.</p>
+            <div class="admin-search-results" id="admin-search-results">
+              <p class="admin-empty">Start typing to search every card.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="admin-panel-head">
+            <h2>Catalog &amp; prices</h2>
+            <span id="curated-count">0 cards</span>
+          </div>
+          <div class="admin-panel-body">
+            <p class="admin-hint">
+              A custom price (HK$) overrides the headline price on the public site. Leave it empty to show the live market price.
+              HK$ is converted to USD / EUR using live FX rates. Curated mode hides every card not in this list.
+            </p>
+            <div class="admin-curated-list" id="admin-curated-list"></div>
+            <button type="button" class="btn btn-ghost" id="btn-clear-all">Clear catalog</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-stack" id="toasts" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
