@@ -791,7 +791,9 @@ async function jpSetPayload(codeRaw) {
 
 async function jpCardPayload(cardIdRaw) {
   const cardId = String(cardIdRaw || '').trim();
-  if (!/^[A-Za-z0-9]+-[A-Za-z0-9]+$/.test(cardId)) {
+  // Japanese card ids are `<setId>-<localId>`, and the set id itself may carry
+  // a dash (promo sets: SV-P, S-P, M-P), so allow 1..3 dashed segments.
+  if (cardId.length > 64 || !/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+){1,3}$/.test(cardId)) {
     return { error: 'Invalid Japanese card id.', status: 400 };
   }
   const result = await tcgdexRequest('/ja/cards/' + encodeURIComponent(cardId), 24 * 3600e3);
@@ -799,9 +801,14 @@ async function jpCardPayload(cardIdRaw) {
     return { error: 'No Japanese card found for “' + cardId + '”.', status: 404 };
   }
   const card = result.body;
-  const setId = (card.set && card.set.id) || cardId.split('-')[0];
   const localId = String(card.localId || '');
   const localKey = localId.replace(/^0+/, '') || '0';
+  // Prefer TCGdex's own set id; otherwise strip the trailing `-<localId>` so
+  // dash-carrying promo set ids (SV-P) are not truncated to their first segment.
+  const setId = (card.set && card.set.id) ||
+    (localId && cardId.endsWith('-' + localId)
+      ? cardId.slice(0, cardId.length - localId.length - 1)
+      : cardId.split('-')[0]);
 
   let snkr = null;
   try {
@@ -882,6 +889,11 @@ async function jpCardPayload(cardIdRaw) {
 }
 
 const jpInflight = new Map();
+/**
+ * Disk/in-flight cache for assembled Japanese payloads. Error payloads are
+ * returned to the caller but deliberately not persisted: a transient TCGdex
+ * hiccup (or a bad request that got fixed) must not stick around for the TTL.
+ */
 function jpCached(key, ttl, producer) {
   const file = path.join(TCGDEX_CACHE, 'resp-' + hashKey(key) + '.json');
   return (async () => {
@@ -889,7 +901,8 @@ function jpCached(key, ttl, producer) {
     if (cached) return cached;
     if (jpInflight.has(key)) return jpInflight.get(key);
     const task = producer().then(async (value) => {
-      await writeDiskCache(file, value);
+      const failed = value && (value.error || value.ok === false);
+      if (!failed) await writeDiskCache(file, value);
       return value;
     }).finally(() => jpInflight.delete(key));
     jpInflight.set(key, task);
